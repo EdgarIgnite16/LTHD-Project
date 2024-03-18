@@ -148,7 +148,6 @@ class _CalculatorViewState extends State<CalculatorView> {
                 ],
               ),
               const SizedBox(height: 10),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
