@@ -1,5 +1,5 @@
-import 'package:calcula_tor/utils/constant/myConst.dart';
-import 'package:calcula_tor/utils/helper/calc.dart';
+import 'package:calcula_tor/utils/const.dart';
+import 'package:calcula_tor/utils/calc.dart';
 import 'package:calcula_tor/widgets/button_number.dart';
 import 'package:calcula_tor/widgets/show_result_area.dart';
 import 'package:flutter/material.dart';
