@@ -1,6 +1,11 @@
-import 'package:bmi_calculator/controllers/theme_controller.dart';
+import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/screens/result_screen.dart';
+import 'package:bmi_calculator/widgets/age_selector.dart';
+import 'package:bmi_calculator/widgets/analyst_button.dart';
+import 'package:bmi_calculator/widgets/height_selector.dart';
 import 'package:bmi_calculator/widgets/select_gender.dart';
 import 'package:bmi_calculator/widgets/theme_change_button.dart';
+import 'package:bmi_calculator/widgets/weight_selector.dart';
 import 'package:bmi_calculator/widgets/welcome_introduce_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,10 +15,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// Thiết lập Theme Controller
-    ThemeController themeController = Get.put(ThemeController());
+    BMIController bmiController = Get.put(BMIController());
 
-    /// Giao diện
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -26,40 +29,53 @@ class HomeScreen extends StatelessWidget {
 
               /// Dòng giới thiệu
               const WelcomeAndIntroduceText(),
-              const SizedBox(height: 10),
+              const SizedBox(height: 40),
 
-              /// Khu vực nút bấm chọn giới tính
               const SelectGenderWidget(),
               const SizedBox(height: 20),
 
               /// Khu vực hiển thị
-              Expanded(
+              const Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
-                      child: Container(
-                        child: const Column(
-                          children: [
-                            Text('data'),
-                          ],
-                        ),
-                      ),
-                    ),
+                    /// Khu vực chọn chiều cao
+                    HeightSelector(),
+                    SizedBox(width: 10),
+
+                    /// Khu vực chọn cân nặng và độ tuổi
                     Expanded(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            color: Colors.red,
-                            height: 200,
-                            child: Text('data'),
-                          )
+                          /// 1. Khu vực chọn cân nặng
+                          WeightSelector(),
+
+                          /// 2. Khu vực chọn độ tuổi
+                          AgeSelector(),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
+              const SizedBox(height: 20),
+
+              /// Button
+              SizedBox(
+                height: 50,
+                child: AnalystButton(
+                  icon: Icons.done,
+                  btnName: "Let's Started",
+                  onPress: () {
+                    /// Thực hiện tính toán
+                    bmiController.calcBMI();
+
+                    /// Di chuyển tới trang kết quả
+                    Get.to(const ResultScreen());
+                  },
+                ),
+              )
             ],
           ),
         ),
