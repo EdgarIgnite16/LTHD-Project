@@ -21,7 +21,7 @@ class HeightSelector extends StatelessWidget {
         ),
         child: Column(
           children: [
-            /// Chữ Text
+            /// Tittle
             Align(
               alignment: Alignment.center,
               child: Text(
@@ -33,7 +33,7 @@ class HeightSelector extends StatelessWidget {
               ),
             ),
 
-            /// Chọn height
+            /// Chữ chiều cao
             Expanded(
               child: Obx(
                 () => SfSlider.vertical(

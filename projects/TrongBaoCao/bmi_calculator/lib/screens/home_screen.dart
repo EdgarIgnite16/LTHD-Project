@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                     Get.to(const ResultScreen());
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),

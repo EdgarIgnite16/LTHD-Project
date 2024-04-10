@@ -13,10 +13,12 @@ class BMIController extends GetxController {
   RxString BMIAdvice = "".obs;
   Rx<Color> colorStatus = const Color(0xff246AFE).obs;
 
+  /// Hàm thay đổi giá trị Gender
   void genderHandle(String gender) {
     Gender.value = gender;
   }
 
+  /// Hàm tính toán BMI
   void calcBMI() {
     var hMeter = Height / 100;
     tempBMI.value = Weight / (hMeter * hMeter);
@@ -25,6 +27,7 @@ class BMIController extends GetxController {
     findStatus();
   }
 
+  /// Hàm set trạng thái
   void findStatus() {
     if (tempBMI.value < 18.5) {
       BMIstatus.value = "UnderWeight";

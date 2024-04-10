@@ -20,7 +20,7 @@ class WeightSelector extends StatelessWidget {
       ),
       child: Column(
         children: [
-          /// Chữ text
+          /// Tittle
           Align(
             alignment: Alignment.center,
             child: Text(
@@ -33,7 +33,7 @@ class WeightSelector extends StatelessWidget {
           ),
           const SizedBox(height: 10),
 
-          /// Chọn cân nặng
+          /// Chữ cân nặng
           Align(
             alignment: Alignment.center,
             child: Obx(
@@ -49,7 +49,7 @@ class WeightSelector extends StatelessWidget {
           ),
           const SizedBox(height: 10),
 
-          /// Khu vực nút bấm chọn cân nặng
+          /// Khu vực nút bấm thay đổi cân nặng
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
