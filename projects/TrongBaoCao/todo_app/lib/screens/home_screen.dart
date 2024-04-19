@@ -1,17 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:todo_app/database/database.dart';
 import 'package:todo_app/model/delete.dart';
-import 'package:todo_app/widgets/delete_item.dart';
 import 'package:todo_app/widgets/main_appbar.dart';
 import 'package:todo_app/widgets/todo_item.dart';
 
 import '../constrants/colors.dart';
 import '../model/todo.dart';
 import '../widgets/complete_item.dart';
-import '../widgets/main_drawer.dart';
 import '../widgets/home_search.dart';
+import '../widgets/main_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   final String appBarTitle;
@@ -77,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // gồm 2 nút là 'ALL TODOS' và 'COMPLETE'
   Container _buildContainerTitle() {
     return Container(
       alignment: Alignment.centerLeft,
@@ -122,6 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // hiển thị danh sách các TODO ITEM
   ListView _buildListTodo() {
     return ListView(
         children: todos.reversed
@@ -129,12 +128,20 @@ class _HomeScreenState extends State<HomeScreen> {
             .toList());
   }
 
+  // hiển thị danh sách COMPLETE ITEM
   ListView _buildListComplete() {
     return ListView(
         children: todos.reversed
             .map<Widget>((todo) => _buildCompleteItem(todo.isDone, todo))
             .toList());
   }
+
+
+  /**
+   * 2 hàm sau dùng để tạo 1 item dựa vào status
+   * FALSE là todo
+   * TRUE la complete
+   */
 
   _buildTodoItem(bool status, Todo todo) {
     return !status &&
@@ -156,6 +163,15 @@ class _HomeScreenState extends State<HomeScreen> {
         : const SizedBox();
   }
 
+
+  /**
+   * mỗi todo item đều có 2 nút chỉnh sửa và xoá, nút chỉnh sửa được thiết kế bên file:todo_item
+   *
+   * 2 hàm sau:
+   * _handleTodoDelete: thực hiện xoá todo trong 'list các todo' và thêm vào 'list các delete' với nội dung tương tự
+   * _handleTodoChangeStatus: đơn giản chỉ là nhấn vào nó thì chuyển nó sang trạng thái 'complete' và ngược lại
+   */
+
   void _handleTodoDelete(Todo todo) {
     setState(() {
       todos.removeWhere((td) => td.id == todo.id);
@@ -172,6 +188,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   SizedBox _buildSizedBox(double h) => SizedBox(height: h);
 
+  /**
+   * hiện một popup khi nhấn floatButton '+'
+   * trong đó thực hiên tạo mới một todo với giá trị text người dùng nhập vào
+   */
   Future<void> _showMyDialog() async {
     final TextEditingController textEdit = TextEditingController();
     return showDialog<void>(

@@ -1,11 +1,7 @@
-import 'dart:ffi';
-
-
 class Todo {
   final String id;
   String text;
   bool isDone;
-  static final List<Todo> _todos = [];
 
   Todo({required this.id, required this.text, this.isDone = false});
 
