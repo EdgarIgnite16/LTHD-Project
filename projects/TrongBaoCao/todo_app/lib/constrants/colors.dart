@@ -1,6 +1,10 @@
 
 import 'dart:ui';
 
+/**
+ * khai báo các màu sử dụng trong ứng dụng
+ */
+
 const Color tdBg = Color(0xFFCCCCCC);
 
 const Color tdBlack = Color(0xFF31363F);
