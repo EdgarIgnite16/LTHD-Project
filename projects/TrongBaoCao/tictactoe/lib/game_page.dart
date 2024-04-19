@@ -8,6 +8,7 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  /// Biến chương trình
   static const String PLAYER_X = "X";
   static const String PLAYER_Y = "O";
 
@@ -21,6 +22,7 @@ class _GamePageState extends State<GamePage> {
     super.initState();
   }
 
+  /// Khởi tạo
   void initializeGame() {
     currentPlayer = PLAYER_X;
     gameEnd = false;
@@ -34,8 +36,13 @@ class _GamePageState extends State<GamePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            /// Header
             _headerText(),
+
+            /// Game Board
             _gameContainer(),
+
+            /// Restart Button
             _restartButton(),
           ],
         ),
@@ -43,6 +50,7 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
+  /// Header
   Widget _headerText() {
     return Column(
       children: [
@@ -66,14 +74,14 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
+  /// Game Board
   Widget _gameContainer() {
     return Container(
       height: MediaQuery.of(context).size.height / 2,
       width: MediaQuery.of(context).size.height / 2,
       margin: const EdgeInsets.all(8),
       child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
           itemCount: 9,
           itemBuilder: (context, int index) {
             return _box(index);
@@ -101,8 +109,8 @@ class _GamePageState extends State<GamePage> {
         color: occupied[index].isEmpty
             ? Colors.black26
             : occupied[index] == PLAYER_X
-            ? Colors.blue
-            : Colors.orange,
+                ? Colors.blue
+                : Colors.orange,
         margin: const EdgeInsets.all(8),
         child: Center(
           child: Text(
@@ -114,7 +122,8 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
-  _restartButton() {
+  /// Restart Button
+  Widget _restartButton() {
     return ElevatedButton(
         onPressed: () {
           setState(() {
@@ -124,7 +133,8 @@ class _GamePageState extends State<GamePage> {
         child: const Text("Restart Game"));
   }
 
-  changeTurn() {
+  /// Hàm thay đổi nguồi choi
+  void changeTurn() {
     if (currentPlayer == PLAYER_X) {
       currentPlayer = PLAYER_Y;
     } else {
@@ -132,7 +142,8 @@ class _GamePageState extends State<GamePage> {
     }
   }
 
-  checkForWinner() {
+  /// Hàm kiểm tra chiến thắng
+  void checkForWinner() {
     //Define winning positions
     List<List<int>> winningList = [
       [0, 1, 2],
@@ -151,8 +162,7 @@ class _GamePageState extends State<GamePage> {
       String playerPosition2 = occupied[winningPos[2]];
 
       if (playerPosition0.isNotEmpty) {
-        if (playerPosition0 == playerPosition1 &&
-            playerPosition0 == playerPosition2) {
+        if (playerPosition0 == playerPosition1 && playerPosition0 == playerPosition2) {
           //all equal means player won
           showGameOverMessage("Player $playerPosition0 Won");
           gameEnd = true;
@@ -162,7 +172,8 @@ class _GamePageState extends State<GamePage> {
     }
   }
 
-  checkForDraw() {
+  /// Hàm Kiểm tra Hoà
+  void checkForDraw() {
     if (gameEnd) {
       return;
     }
@@ -180,7 +191,8 @@ class _GamePageState extends State<GamePage> {
     }
   }
 
-  showGameOverMessage(String message) {
+  /// Hàm hiển thị thông báo kết thúc trò chơi
+  void showGameOverMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
           backgroundColor: Colors.green,
