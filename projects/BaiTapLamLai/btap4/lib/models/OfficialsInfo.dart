@@ -8,15 +8,16 @@ class OfficialsInfo {
   final String? photoUrl;
   final List<Map<String, dynamic>>? channels;
 
-  OfficialsInfo(
-      {this.name,
-      this.address,
-      this.party,
-      this.phones,
-      this.emails,
-      this.urls,
-      this.photoUrl,
-      this.channels});
+  OfficialsInfo({
+    this.name,
+    this.address,
+    this.party,
+    this.phones,
+    this.emails,
+    this.urls,
+    this.photoUrl,
+    this.channels,
+  });
 
   static OfficialsInfo fromJson(Map<String, dynamic> json) {
     return OfficialsInfo(

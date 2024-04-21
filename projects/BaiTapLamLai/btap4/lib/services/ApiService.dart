@@ -7,9 +7,9 @@ import 'package:url_launcher/url_launcher.dart';
 class ApiService {
   String key = "AIzaSyAGx-Xog2AU_hSO3SS6vlpPxtaWjhsgC_Q";
 
+  /// Lấy dữ liệu
   Future<DataOutput> fetchData(String keySearch) async {
-    String URL =
-        "https://www.googleapis.com/civicinfo/v2/representatives?key=$key&address=$keySearch";
+    String URL = "https://www.googleapis.com/civicinfo/v2/representatives?key=$key&address=$keySearch";
     final response = await http.get(Uri.parse(URL));
     if (response.statusCode == 200) {
       return DataOutput.fromJson(jsonDecode(response.body));
@@ -18,6 +18,7 @@ class ApiService {
     }
   }
 
+  /// Lấy thông tin liên hệ
   Future<void> lauchSocialMedia(String type, String id) async {
     if (type == "Facebook") {
       await _openFacebook(id);
@@ -26,6 +27,7 @@ class ApiService {
     }
   }
 
+  /// Mở app Facebook
   Future<void> _openFacebook(String id) async {
     String fbProtocolUrl;
     if (Platform.isIOS) {
@@ -43,14 +45,14 @@ class ApiService {
       if (canLaunchNatively) {
         launchUrl(fbBundleUri);
       } else {
-        await launchUrl(Uri.parse(fallbackUrl),
-            mode: LaunchMode.externalApplication);
+        await launchUrl(Uri.parse(fallbackUrl), mode: LaunchMode.externalApplication);
       }
     } catch (e, st) {
       throw 'Could not launch $fallbackUrl';
     }
   }
 
+  /// Mở app Twitter
   Future<void> _openTwitter(String id) async {
     Uri twitterPageUrl = Uri.parse('https://www.twitter.com/${id}');
 

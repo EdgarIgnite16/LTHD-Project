@@ -52,7 +52,7 @@ class HomeScreenState extends State<HomeScreen> {
                       });
                       Navigator.of(context).pop();
                     },
-                    child: Text('Search'),
+                    child: const Text('Search'),
                   ),
                 ],
               );
@@ -70,20 +70,22 @@ class HomeScreenState extends State<HomeScreen> {
                 return Column(
                   children: [
                     ShowLocationHeader(
-                        localtion:
-                            "${normalizedInput?.city} ${normalizedInput?.state} ${normalizedInput?.zip}"),
+                      localtion: "${normalizedInput?.city} ${normalizedInput?.state} ${normalizedInput?.zip}",
+                    ),
                     Expanded(
-                        child: ListView(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 10),
-                            children:
-                                snapshot.data!.officesInfo.map<Widget>((item) {
-                              return ProfileItem(
-                                  normalizedInput:
-                                      snapshot.data!.normalizedInput,
-                                  officesInfo: item,
-                                  officialsInfo: snapshot.data!.officialsInfo);
-                            }).toList())),
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                        children: snapshot.data!.officesInfo.map<Widget>(
+                          (item) {
+                            return ProfileItem(
+                              normalizedInput: snapshot.data!.normalizedInput,
+                              officesInfo: item,
+                              officialsInfo: snapshot.data!.officialsInfo,
+                            );
+                          },
+                        ).toList(),
+                      ),
+                    ),
                   ],
                 );
               } else {
