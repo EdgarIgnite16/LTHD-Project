@@ -1,14 +1,19 @@
-import 'package:btap4/models/subject.dart';
+import 'package:btap4/models/AreaInfo.dart';
+import 'package:btap4/models/OfficesInfo.dart';
+import 'package:btap4/models/OfficialsInfo.dart';
 import 'package:btap4/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileItem extends StatelessWidget {
-  const ProfileItem({
-    super.key,
-    required this.subject,
-  });
+  const ProfileItem(
+      {super.key,
+      required this.normalizedInput,
+      required this.officesInfo,
+      required this.officialsInfo});
 
-  final Subject subject;
+  final AreaInfo normalizedInput;
+  final OfficesInfo officesInfo;
+  final List<OfficialsInfo> officialsInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,9 @@ class ProfileItem extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DetailScreen(subject: subject),
+          builder: (context) => DetailScreen(
+              normalizedInput: normalizedInput,
+              officialsInfo: officialsInfo[officesInfo.officialIndices![0]]),
         ),
       ),
       child: Card(
@@ -28,7 +35,7 @@ class ProfileItem extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  subject.title,
+                  officesInfo.name ?? "",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -41,7 +48,7 @@ class ProfileItem extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  subject.name,
+                  officialsInfo[officesInfo.officialIndices![0]].name ?? "",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.purple.shade300,
