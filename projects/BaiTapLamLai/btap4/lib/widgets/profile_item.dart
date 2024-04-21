@@ -5,11 +5,12 @@ import 'package:btap4/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileItem extends StatelessWidget {
-  const ProfileItem(
-      {super.key,
-      required this.normalizedInput,
-      required this.officesInfo,
-      required this.officialsInfo});
+  const ProfileItem({
+    super.key,
+    required this.normalizedInput,
+    required this.officesInfo,
+    required this.officialsInfo,
+  });
 
   final AreaInfo normalizedInput;
   final OfficesInfo officesInfo;
@@ -21,9 +22,7 @@ class ProfileItem extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DetailScreen(
-              normalizedInput: normalizedInput,
-              officialsInfo: officialsInfo[officesInfo.officialIndices![0]]),
+          builder: (context) => DetailScreen(normalizedInput: normalizedInput, officialsInfo: officialsInfo[officesInfo.officialIndices![0]]),
         ),
       ),
       child: Card(
