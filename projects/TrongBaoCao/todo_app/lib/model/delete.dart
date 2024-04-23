@@ -3,14 +3,18 @@ class Delete {
   final String text;
   bool isDone;
 
-  Delete({required this.id, required this.text, this.isDone = false});
+  Delete({
+    required this.id,
+    required this.text,
+    this.isDone = false,
+  });
 
   static List<Delete> deleteList() {
     return [
-     Delete(id: '10', text: 'Breakfast'),
-     Delete(id: '11', text: 'Doctor'),
-     Delete(id: '12', text: 'Complete last task'),
-     Delete(id: '13', text: 'Exercise'),
+      Delete(id: '10', text: 'Breakfast'),
+      Delete(id: '11', text: 'Doctor'),
+      Delete(id: '12', text: 'Complete last task'),
+      Delete(id: '13', text: 'Exercise'),
     ];
   }
 
@@ -25,8 +29,7 @@ class Delete {
   static Delete fromMap(Map<String, dynamic> map) {
     String id = map['id'];
     String text = map['text'];
-    bool status  = !map['isDone'];
+    bool status = !map['isDone'];
     return Delete(id: id, text: text, isDone: status);
   }
-
 }

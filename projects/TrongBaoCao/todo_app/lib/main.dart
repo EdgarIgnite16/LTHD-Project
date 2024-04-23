@@ -18,7 +18,7 @@ void createSample() {
   Database database = Database.instance;
 
   // create for todo list
-  database.createTodo(Todo(id: '1', text: 'Meeting', isDone: false));
+  database.createTodo(Todo(id: '1', text: 'Meeting', isDone: true));
   database.createTodo(Todo(id: '2', text: 'Exercise', isDone: false));
   database.createTodo(Todo(id: '3', text: 'Fix last bug', isDone: true));
   database.createTodo(Todo(id: '4', text: 'Go to Doctor', isDone: true));

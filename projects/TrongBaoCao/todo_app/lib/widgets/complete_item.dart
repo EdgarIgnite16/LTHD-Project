@@ -8,11 +8,12 @@ class CompleteItem extends StatefulWidget {
   final onDeleted;
   final onChanged;
 
-  CompleteItem(
-      {super.key,
-      required this.todo,
-      required this.onDeleted,
-      required this.onChanged});
+  CompleteItem({
+    super.key,
+    required this.todo,
+    required this.onDeleted,
+    required this.onChanged,
+  });
 
   @override
   State<CompleteItem> createState() => _CompleteItemState();
@@ -28,8 +29,7 @@ class _CompleteItemState extends State<CompleteItem> {
         tileColor: tdLBrown,
         title: Text(
           widget.todo.text,
-          style: const TextStyle(
-              fontSize: 16, decoration: TextDecoration.lineThrough),
+          style: const TextStyle(fontSize: 16, decoration: TextDecoration.lineThrough),
         ),
         leading: const Icon(Icons.check, color: tdLPur),
         onTap: () {

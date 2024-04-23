@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 class MySearchField extends StatefulWidget {
   final onSearchChanged;
+
   const MySearchField({
     super.key,
     required this.onSearchChanged,

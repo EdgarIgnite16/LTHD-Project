@@ -12,7 +12,10 @@ class DeleteScreen extends StatefulWidget {
   final String appBarTitle;
   final Database database = Database.instance;
 
-  DeleteScreen({super.key, required this.appBarTitle});
+  DeleteScreen({
+    super.key,
+    required this.appBarTitle,
+  });
 
   @override
   State<DeleteScreen> createState() => _DeleteScreenState();

@@ -19,7 +19,10 @@ class HomeScreen extends StatefulWidget {
 
   String searchString = '';
 
-  HomeScreen({Key? key, required this.appBarTitle}) : super(key: key);
+  HomeScreen({
+    Key? key,
+    required this.appBarTitle,
+  }) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -60,8 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             _buildSizedBox(15),
             Expanded(
-              child:
-                  widget._isShowTodo ? _buildListTodo() : _buildListComplete(),
+              child: widget._isShowTodo ? _buildListTodo() : _buildListComplete(),
             ),
           ],
         ),
@@ -87,8 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(
                 color: tdLGreen,
                 fontSize: 22,
-                fontWeight:
-                    widget._isShowTodo ? FontWeight.w700 : FontWeight.w300,
+                fontWeight: widget._isShowTodo ? FontWeight.w700 : FontWeight.w300,
               ),
             ),
             onTap: () {
@@ -104,8 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(
                 color: tdDGrey,
                 fontSize: 22,
-                fontWeight:
-                    widget._isShowComplete ? FontWeight.w700 : FontWeight.w300,
+                fontWeight: widget._isShowComplete ? FontWeight.w700 : FontWeight.w300,
               ),
             ),
             onTap: () {
@@ -122,20 +122,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // hiển thị danh sách các TODO ITEM
   ListView _buildListTodo() {
-    return ListView(
-        children: todos.reversed
-            .map<Widget>((todo) => _buildTodoItem(todo.isDone, todo))
-            .toList());
+    return ListView(children: todos.reversed.map<Widget>((todo) => _buildTodoItem(todo)).toList());
   }
 
   // hiển thị danh sách COMPLETE ITEM
   ListView _buildListComplete() {
-    return ListView(
-        children: todos.reversed
-            .map<Widget>((todo) => _buildCompleteItem(todo.isDone, todo))
-            .toList());
+    return ListView(children: todos.reversed.map<Widget>((todo) => _buildCompleteItem(todo)).toList());
   }
-
 
   /**
    * 2 hàm sau dùng để tạo 1 item dựa vào status
@@ -143,26 +136,19 @@ class _HomeScreenState extends State<HomeScreen> {
    * TRUE la complete
    */
 
-  _buildTodoItem(bool status, Todo todo) {
-    return !status &&
-            todo.text.toLowerCase().contains(widget.searchString.toLowerCase())
-        ? TodoItem(
-            todo: todo,
-            onDeleted: _handleTodoDelete,
-            onChangedStatus: _handleTodoChangeStatus)
+  _buildTodoItem(Todo todo) {
+    /// Trả về đối tượng toDo có trạng thái isDone = false. Tức là Todo chưa được hoàn thành
+    return todo.isDone == false && todo.text.toLowerCase().contains(widget.searchString.toLowerCase())
+        ? TodoItem(todo: todo, onDeleted: _handleTodoDelete, onChangedStatus: _handleTodoChangeStatus)
         : const SizedBox();
   }
 
-  _buildCompleteItem(bool status, Todo todo) {
-    return status &&
-            todo.text.toLowerCase().contains(widget.searchString.toLowerCase())
-        ? CompleteItem(
-            todo: todo,
-            onDeleted: _handleTodoDelete,
-            onChanged: _handleTodoChangeStatus)
+  _buildCompleteItem(Todo todo) {
+    /// Trả về đối tượng ToDo có trạng thái isDone = true. Tức là Todo đã được hoàn thành
+    return todo.isDone == true && todo.text.toLowerCase().contains(widget.searchString.toLowerCase())
+        ? CompleteItem(todo: todo, onDeleted: _handleTodoDelete, onChanged: _handleTodoChangeStatus)
         : const SizedBox();
   }
-
 
   /**
    * mỗi todo item đều có 2 nút chỉnh sửa và xoá, nút chỉnh sửa được thiết kế bên file:todo_item
@@ -206,10 +192,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 TextField(
                   controller: textEdit,
                   decoration: InputDecoration(
-                      hintText: 'Your todo',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(21),
-                      )),
+                    hintText: 'Your todo',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(21),
+                    ),
+                  ),
                 ),
               ],
             ),

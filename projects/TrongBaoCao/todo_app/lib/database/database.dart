@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:core';
 
 import 'package:todo_app/model/delete.dart';
 import 'package:todo_app/model/todo.dart';
@@ -8,8 +7,10 @@ import 'package:todo_app/model/todo.dart';
  * class này đại diện cho môt database cơ bản với CRUD
  * tạo 2 đối tượng chính của ứng dụng là TODO và DELETE
  */
+
 class Database {
   static final Database _instance = Database();
+
   // todo item
   final List<Todo> _todos = [];
 

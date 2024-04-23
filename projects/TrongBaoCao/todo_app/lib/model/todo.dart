@@ -3,7 +3,11 @@ class Todo {
   String text;
   bool isDone;
 
-  Todo({required this.id, required this.text, this.isDone = false});
+  Todo({
+    required this.id,
+    required this.text,
+    this.isDone = false,
+  });
 
   Map<String, dynamic> toMap() {
     return {
