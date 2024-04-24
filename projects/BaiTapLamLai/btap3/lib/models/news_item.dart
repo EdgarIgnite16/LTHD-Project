@@ -1,5 +1,4 @@
 import 'package:webfeed/domain/rss_item.dart';
-import 'package:html/parser.dart' as html; // For image handling
 
 class NewsItem {
   final String title;
