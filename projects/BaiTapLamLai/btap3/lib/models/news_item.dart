@@ -13,12 +13,8 @@ class NewsItem {
     String? imageUrl;
     String descriptionText = '';
 
-    // Parsing HTML content to extract image URL
-    if (item.content != null) {
-      final document = html.parse(item.content!.value);
-      final imageElement = document.querySelector('img');
-      imageUrl = imageElement?.attributes['src'];
-    }
+    final imageElement = item.enclosure;
+    imageUrl = imageElement?.url;
 
     // Extracting text after </br> in the description HTML
     final descriptionRegExp = RegExp(r'</br>(.*?)$');
