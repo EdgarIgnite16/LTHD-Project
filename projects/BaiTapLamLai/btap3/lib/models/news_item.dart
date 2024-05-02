@@ -6,7 +6,12 @@ class NewsItem {
   final String description;
   final String? imageUrl;
 
-  NewsItem(this.title, this.link, this.description, {this.imageUrl});
+  NewsItem(
+    this.title,
+    this.link,
+    this.description, {
+    this.imageUrl,
+  });
 
   factory NewsItem.fromRssItem(RssItem item) {
     String? imageUrl;
